@@ -1,0 +1,23 @@
+name: SeaShipMinecraftPlugin
+version: '${version}'
+main: com.github.seaoftrees08.ssmp.SeaShipMinecraftPlugin
+api-version: 1.19
+commands:
+  home:
+    description: Home Commands
+    usage: /home help
+    permission: ssmp.home
+    permission-message: You don't have enough permission.
+    default: true
+  spawn:
+    description: Spawn Command instead of /mv spawn
+    usage: /spawn
+    permission: ssmp.spawn
+    permission-message: You don't have enough permission.
+    default: true
+  suicide:
+    description: You will die.
+    usage: /suicide
+    permission: ssmp.suicide
+    permission-message: You don't have enough permission.
+    default: true
