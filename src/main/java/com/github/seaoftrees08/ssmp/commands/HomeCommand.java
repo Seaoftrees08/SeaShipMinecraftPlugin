@@ -2,6 +2,7 @@ package com.github.seaoftrees08.ssmp.commands;
 
 import com.github.seaoftrees08.ssmp.SeaShipMinecraftPlugin;
 import com.github.seaoftrees08.ssmp.home.Home;
+import com.github.seaoftrees08.ssmp.textutil.TextColor2Tag;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,7 +24,8 @@ public class HomeCommand implements CommandExecutor {
         // /home
         if(args.length == 0 && sender instanceof Player player){
             Home home = new Home(player, Home.NAMELESS, true);
-            player.teleport(home);
+            player.sendPlainMessage("debug: " + home.toString());
+            if(!home.isUntilSet()) player.teleport(home);
             return true;
         }
 
@@ -31,6 +33,7 @@ public class HomeCommand implements CommandExecutor {
         if(args.length == 1 && args[0].equalsIgnoreCase("set") && sender instanceof Player player){
             Home home = new Home(player, Home.NAMELESS);
             home.save();
+            reply(sender, NamedTextColor.GREEN, "homeを設定しました！");
             return true;
         }
 
@@ -77,7 +80,7 @@ public class HomeCommand implements CommandExecutor {
     }
 
     private void reply(CommandSender cs, NamedTextColor ntc, String msg){
-        cs.sendRichMessage(NamedTextColor.LIGHT_PURPLE + "[SSMP-Home]" + ntc + msg);
+        cs.sendRichMessage("<light_purple>[SSMP-Home] </light_purple>" + TextColor2Tag.TextColor2StartTag(ntc) + msg + TextColor2Tag.TextColor2EndTag(ntc));
     }
     private void sendHelp(CommandSender cs){
         reply(cs, NamedTextColor.GRAY, "/home set     #homeを設定する");

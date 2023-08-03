@@ -3,7 +3,6 @@ package com.github.seaoftrees08.ssmp.home;
 import com.github.seaoftrees08.ssmp.SeaShipMinecraftPlugin;
 import com.github.seaoftrees08.ssmp.ymlmng.YamlFileList;
 import com.github.seaoftrees08.ssmp.ymlmng.YamlReaderWriter;
-import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -15,6 +14,8 @@ public class Home extends Location {
     private final YamlReaderWriter hyml = new YamlReaderWriter(YamlFileList.homeList);
     private final Player player;
     private final String homeName;
+
+    private boolean untilSet;
 
     public UUID uuid;
 
@@ -33,6 +34,7 @@ public class Home extends Location {
         );
         this.player = player;
         this.homeName = homeName;
+        this.untilSet = false;
     }
 
     // when tp home
@@ -47,7 +49,8 @@ public class Home extends Location {
         this(player, homeName);
         String ymlStr = hyml.getYamlConfig().getString(path());
         if(ymlStr == null){
-            player.sendRichMessage(NamedTextColor.LIGHT_PURPLE + "[SSMP-Home]" + NamedTextColor.RED + "homeが設定されていません");
+            player.sendRichMessage("<light_purple>[SSMP-Home]</light_purple> <red>homeが設定されていません</red>");
+            untilSet = true;
             return;
         }
         String[] locStrs = ymlStr.split(",");
@@ -63,6 +66,10 @@ public class Home extends Location {
 
     }
 
+    public boolean isUntilSet(){
+        return untilSet;
+    }
+
     /**
      * ymlにsaveする
      */
@@ -75,7 +82,7 @@ public class Home extends Location {
      * @return
      */
     private String getHomeString(){
-        return player.getWorld() + "," +
+        return player.getWorld().getName() + "," +
                 player.getLocation().getX() + "," +
                 player.getLocation().getY() + "," +
                 player.getLocation().getZ() + "," +
