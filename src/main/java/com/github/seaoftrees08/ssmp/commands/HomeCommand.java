@@ -2,7 +2,7 @@ package com.github.seaoftrees08.ssmp.commands;
 
 import com.github.seaoftrees08.ssmp.SeaShipMinecraftPlugin;
 import com.github.seaoftrees08.ssmp.home.Home;
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -41,7 +41,8 @@ public class HomeCommand implements CommandExecutor {
             home.uuid = uuid;
             Player invitee = SeaShipMinecraftPlugin.plugin.getServer().getPlayer(args[1]);
             if (invitee==null){
-                reply(sender, ChatColor.RED, "招待相手が見つかりません");
+                reply(sender, NamedTextColor.RED, "招待相手が見つかりません");
+                reply(sender, NamedTextColor.RED, "招待相手が見つかりません");
                 return true;
             }
             invites.put(invitee.getName(), home);
@@ -54,8 +55,8 @@ public class HomeCommand implements CommandExecutor {
                     }
                 }
             }.runTaskLater(SeaShipMinecraftPlugin.plugin, 20*30);
-            reply(sender, ChatColor.GREEN, invitee.getName() + "を招待しました! 30秒以内に相手に/home acceptを実行してもらってください");
-            reply(invitee, ChatColor.AQUA, player.getName() + "から招待を受けました! 30秒以内に/home acceptを実行してください");
+            reply(sender, NamedTextColor.GREEN, invitee.getName() + "を招待しました! 30秒以内に相手に/home acceptを実行してもらってください");
+            reply(invitee, NamedTextColor.AQUA, player.getName() + "から招待を受けました! 30秒以内に/home acceptを実行してください");
             return true;
         }
 
@@ -65,9 +66,9 @@ public class HomeCommand implements CommandExecutor {
             if(home != null){
                 player.teleport(home);
                 invites.remove(player.getName());
-                reply(player, ChatColor.GREEN, "招待を受けました!");
+                reply(player, NamedTextColor.GREEN, "招待を受けました!");
             }else{
-                reply(player, ChatColor.RED, "正体が存在しないか、無効です");
+                reply(player, NamedTextColor.RED, "正体が存在しないか、無効です");
             }
         }
 
@@ -75,11 +76,11 @@ public class HomeCommand implements CommandExecutor {
         return true;
     }
 
-    private void reply(CommandSender cs, ChatColor cc, String msg){
-        cs.sendMessage(ChatColor.LIGHT_PURPLE + "[SSMP-Home]" + cc + msg);
+    private void reply(CommandSender cs, NamedTextColor ntc, String msg){
+        cs.sendPlainMessage(NamedTextColor.LIGHT_PURPLE + "[SSMP-Home]" + ntc + msg);
     }
     private void sendHelp(CommandSender cs){
-        reply(cs, ChatColor.GRAY, "/home set     #homeを設定する");
-        reply(cs, ChatColor.GRAY, "/home         #設定したhomeへ飛ぶ");
+        reply(cs, NamedTextColor.GRAY, "/home set     #homeを設定する");
+        reply(cs, NamedTextColor.GRAY, "/home         #設定したhomeへ飛ぶ");
     }
 }
