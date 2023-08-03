@@ -77,7 +77,7 @@ public class HomeCommand implements CommandExecutor {
     }
 
     private void reply(CommandSender cs, NamedTextColor ntc, String msg){
-        cs.sendPlainMessage(NamedTextColor.LIGHT_PURPLE + "[SSMP-Home]" + ntc + msg);
+        cs.sendRichMessage(NamedTextColor.LIGHT_PURPLE + "[SSMP-Home]" + ntc + msg);
     }
     private void sendHelp(CommandSender cs){
         reply(cs, NamedTextColor.GRAY, "/home set     #homeを設定する");

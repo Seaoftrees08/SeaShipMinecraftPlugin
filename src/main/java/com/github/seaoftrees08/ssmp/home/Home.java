@@ -3,6 +3,7 @@ package com.github.seaoftrees08.ssmp.home;
 import com.github.seaoftrees08.ssmp.SeaShipMinecraftPlugin;
 import com.github.seaoftrees08.ssmp.ymlmng.YamlFileList;
 import com.github.seaoftrees08.ssmp.ymlmng.YamlReaderWriter;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -46,7 +47,7 @@ public class Home extends Location {
         this(player, homeName);
         String ymlStr = hyml.getYamlConfig().getString(path());
         if(ymlStr == null){
-            player.sendPlainMessage("homeが設定されていません");
+            player.sendRichMessage(NamedTextColor.LIGHT_PURPLE + "[SSMP-Home]" + NamedTextColor.RED + "homeが設定されていません");
             return;
         }
         String[] locStrs = ymlStr.split(",");
