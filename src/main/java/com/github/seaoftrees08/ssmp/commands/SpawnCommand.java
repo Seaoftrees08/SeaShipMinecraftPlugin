@@ -11,8 +11,7 @@ public class SpawnCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(command.getName().equalsIgnoreCase("spawn") && args.length==0 && sender instanceof Player player){
-            player.performCommand("/mv spawn");
-            return true;
+            return  player.performCommand("mv spawn");
         }
         return false;
     }
