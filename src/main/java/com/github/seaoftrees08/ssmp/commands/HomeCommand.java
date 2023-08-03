@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -42,7 +41,7 @@ public class HomeCommand implements CommandExecutor {
             home.uuid = uuid;
             Player invitee = SeaShipMinecraftPlugin.plugin.getServer().getPlayer(args[1]);
             if (invitee==null){
-                reply(sender, ChatColor.RED, "µ‘Ò‘Šè‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+                reply(sender, ChatColor.RED, "æ‹›å¾…ç›¸æ‰‹ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
                 return true;
             }
             invites.put(invitee.getName(), home);
@@ -55,8 +54,8 @@ public class HomeCommand implements CommandExecutor {
                     }
                 }
             }.runTaskLater(SeaShipMinecraftPlugin.plugin, 20*30);
-            reply(sender, ChatColor.GREEN, invitee.getName() + "‚ğµ‘Ò‚µ‚Ü‚µ‚½! 30•bˆÈ“à‚É‘Šè‚É/home accept‚ğÀs‚µ‚Ä‚à‚ç‚Á‚Ä‚­‚¾‚³‚¢");
-            reply(invitee, ChatColor.AQUA, player.getName() + "‚©‚çµ‘Ò‚ğó‚¯‚Ü‚µ‚½! 30•bˆÈ“à‚É/home accept‚ğÀs‚µ‚Ä‚­‚¾‚³‚¢");
+            reply(sender, ChatColor.GREEN, invitee.getName() + "ã‚’æ‹›å¾…ã—ã¾ã—ãŸ! 30ç§’ä»¥å†…ã«ç›¸æ‰‹ã«/home acceptã‚’å®Ÿè¡Œã—ã¦ã‚‚ã‚‰ã£ã¦ãã ã•ã„");
+            reply(invitee, ChatColor.AQUA, player.getName() + "ã‹ã‚‰æ‹›å¾…ã‚’å—ã‘ã¾ã—ãŸ! 30ç§’ä»¥å†…ã«/home acceptã‚’å®Ÿè¡Œã—ã¦ãã ã•ã„");
             return true;
         }
 
@@ -66,9 +65,9 @@ public class HomeCommand implements CommandExecutor {
             if(home != null){
                 player.teleport(home);
                 invites.remove(player.getName());
-                reply(player, ChatColor.GREEN, "µ‘Ò‚ğó‚¯‚Ü‚µ‚½!");
+                reply(player, ChatColor.GREEN, "æ‹›å¾…ã‚’å—ã‘ã¾ã—ãŸ!");
             }else{
-                reply(player, ChatColor.RED, "³‘Ì‚ª‘¶İ‚µ‚È‚¢‚©A–³Œø‚Å‚·");
+                reply(player, ChatColor.RED, "æ­£ä½“ãŒå­˜åœ¨ã—ãªã„ã‹ã€ç„¡åŠ¹ã§ã™");
             }
         }
 
@@ -80,7 +79,7 @@ public class HomeCommand implements CommandExecutor {
         cs.sendMessage(ChatColor.LIGHT_PURPLE + "[SSMP-Home]" + cc + msg);
     }
     private void sendHelp(CommandSender cs){
-        reply(cs, ChatColor.GRAY, "/home set     #home‚ğİ’è‚·‚é");
-        reply(cs, ChatColor.GRAY, "/home         #İ’è‚µ‚½home‚Ö”ò‚Ô");
+        reply(cs, ChatColor.GRAY, "/home set     #homeã‚’è¨­å®šã™ã‚‹");
+        reply(cs, ChatColor.GRAY, "/home         #è¨­å®šã—ãŸhomeã¸é£›ã¶");
     }
 }

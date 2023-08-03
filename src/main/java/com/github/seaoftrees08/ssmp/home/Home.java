@@ -18,7 +18,11 @@ public class Home extends Location {
 
     public UUID uuid;
 
-    //when set home
+    /**
+     * when set home
+     * @param player setしたplayer
+     * @param homeName homeの名前
+     */
     public Home(Player player, String homeName){
         super(player.getWorld(),
                 player.getLocation().getX(),
@@ -32,6 +36,13 @@ public class Home extends Location {
     }
 
     // when tp home
+
+    /**
+     * when tp home
+     * @param player tpしたplayer
+     * @param homeName homeの名前
+     * @param whenTp homeSetと区別するために引数を入れているだけ。未使用
+     */
     public Home(Player player, String homeName, boolean whenTp){
         this(player, homeName);
         String[] locStrs = Objects.requireNonNull(hyml.getYamlConfig().getString(path())).split(",");
@@ -47,10 +58,17 @@ public class Home extends Location {
 
     }
 
+    /**
+     * ymlにsaveする
+     */
     public void save(){
         hyml.writeAndSave(yml -> yml.set(path(), getHomeString()));
     }
 
+    /**
+     * homeを設定した際、ymlに書き込むStirngとして取得する
+     * @return
+     */
     private String getHomeString(){
         return player.getWorld() + "," +
                 player.getLocation().getX() + "," +
@@ -60,6 +78,15 @@ public class Home extends Location {
                 player.getLocation().getPitch();
     }
 
+    /**
+     * ymlから読み込んだStringをLocationに変換する
+     * @param world world
+     * @param x x座標
+     * @param y y座標
+     * @param z z座標
+     * @param yaw yaw
+     * @param pitch pitch
+     */
     private void setLocation(World world, double x, double y, double z, float yaw, float pitch){
         setWorld(world);
         setX(x);
@@ -69,6 +96,10 @@ public class Home extends Location {
         setPitch(pitch);
     }
 
+    /**
+     * ymlのpathを取得する
+     * @return
+     */
     private String path(){
         return player.getName() + "@" + homeName;
     }
