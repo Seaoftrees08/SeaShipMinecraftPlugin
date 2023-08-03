@@ -7,7 +7,6 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
-import java.util.Objects;
 import java.util.UUID;
 
 public class Home extends Location {
@@ -45,7 +44,12 @@ public class Home extends Location {
      */
     public Home(Player player, String homeName, boolean whenTp){
         this(player, homeName);
-        String[] locStrs = Objects.requireNonNull(hyml.getYamlConfig().getString(path())).split(",");
+        String ymlStr = hyml.getYamlConfig().getString(path());
+        if(ymlStr == null){
+            player.sendPlainMessage("homeが設定されていません");
+            return;
+        }
+        String[] locStrs = ymlStr.split(",");
         if(locStrs.length != 6) return;
         setLocation(
                 SeaShipMinecraftPlugin.plugin.getServer().getWorld(locStrs[0]),
