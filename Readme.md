@@ -1,11 +1,11 @@
 # SeaMyServerPlugin
-���M�������̎I�Ɏg���Ă�v���O�C��
+お舟民向けの鯖に使ってるプラグイン
 
 - /home
-    - home��ݒ肷��/home set  �@
-    - �ݒ肵��home�ɔ��/home
-    - A�����������home�ɏ��҂���/home invite A
-    - A���񂩂�󂯂����҂ɉ�����/home accept A
+    - homeを設定する/home set  　
+    - 設定したhomeに飛ぶ/home
+    - Aさんを自分のhomeに招待する/home invite A
+    - Aさんから受けた招待に応じる/home accept A
 - /spawn
 - /suicide  
 
