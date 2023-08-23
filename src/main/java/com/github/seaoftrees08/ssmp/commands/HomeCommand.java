@@ -24,7 +24,6 @@ public class HomeCommand implements CommandExecutor {
         // /home
         if(args.length == 0 && sender instanceof Player player){
             Home home = new Home(player, Home.NAMELESS, true);
-            player.sendPlainMessage("debug: " + home.toString());
             if(!home.isUntilSet()) player.teleport(home);
             return true;
         }
