@@ -20,7 +20,7 @@ public class PlayerListeners implements Listener {
 
         String[] args = event.getMessage().split(" ");
         if(args.length == 3 && args[0].equalsIgnoreCase("/whitelist") && args[1].equalsIgnoreCase("add")){
-            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "whitelist add" + args[2]);
+            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "whitelist add " + args[2]);
             event.getPlayer().sendMessage(args[2] + "をホワイトリストに追加しました");
             event.setCancelled(true);
         }
