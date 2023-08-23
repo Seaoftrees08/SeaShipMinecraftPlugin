@@ -21,9 +21,3 @@ commands:
     permission: ssmp.suicide
     permission-message: You don't have enough permission.
     default: true
-  whitelist:
-    description: You can add whitelist for anyone.
-    usage: /whitelist add <playerName>
-    permission: ssmp.whitelist
-    permission-message: You don't have enough permission.
-    default: true
